@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>이상화 Portfolio</title>
+    <meta
+      name="description"
+      content="Frontend and product engineer portfolio for 이상화, KAIST CS graduate and TingtingPlanet founder."
+    >
+    <meta property="og:title" content="이상화 Portfolio">
+    <meta
+      property="og:description"
+      content="Product-focused frontend and full-stack work across B2B ordering, AI consultation, mobile web apps, and internal tools."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/images/onthemarket-app-1.webp">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header" aria-label="주요 메뉴">
+      <a class="brand" href="#top" aria-label="이상화 portfolio home">
+        <span>이상화</span>
+      </a>
+      <nav class="nav-links" aria-label="Portfolio sections">
+        <a href="#ai-experience">AI</a>
+        <a href="#work">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-media" aria-hidden="true">
+          <img class="hero-shot shot-a" src="assets/images/onthemarket-app-1.webp" alt="">
+          <img class="hero-shot shot-b" src="assets/images/syrs-1.webp" alt="">
+          <img class="hero-shot shot-c" src="assets/images/gagageul.webp" alt="">
+          <img class="hero-shot shot-d" src="assets/images/playai-1.webp" alt="">
+        </div>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Frontend / Product Engineer · KAIST CS</p>
+          <h1 id="hero-title">이상화</h1>
+          <p class="hero-lead">
+            다양한 요구사항을 제품 화면과 데이터 구조로 번역하는 일을 좋아합니다.
+            음식점 식자재 발주, AI 스킨케어 상담, 모바일 웹앱 등 다양한 제품들을 만들어 납품해봤습니다.
+          </p>
+          <div class="hero-actions" aria-label="주요 링크">
+            <a class="action primary" href="#projects">Selected work</a>
+            <a class="action" href="mailto:tkd99200622@gmail.com">Email</a>
+            <a class="action" href="https://github.com/tkd992006" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="profile section" aria-labelledby="profile-title">
+        <div class="section-heading">
+          <p class="eyebrow">Profile</p>
+          <h2 id="profile-title">다양한 요구사항을 제품으로 바꾸는 개발자</h2>
+        </div>
+        <div class="profile-copy">
+          <p>
+            <strong>KAIST 전산학부</strong>를 졸업하고 <strong>수리과학부</strong>를 부전공했습니다.
+            React, Next.js, NestJS, GraphQL, MongoDB를 중심으로 프론트 화면과 백엔드 비즈니스 로직을 함께 구현해왔습니다.
+          </p>
+          <p>
+            음식점주 대상 어플리케이션, 화장품 플래그쉽 매장 비치용 Ipad, 중장년 퇴직자를 위한 강점검사 프로그램,
+            Web3지갑연결 등 사용 맥락이 다른 제품들을 반복적으로 만들며 화면 문구, 상태 흐름, 반응형 레이아웃을
+            끝까지 다듬는 방식을 익혔습니다.
+          </p>
+        </div>
+      </section>
+
+      <section id="ai-experience" class="section ai-section" aria-labelledby="ai-title">
+        <div class="section-heading">
+          <p class="eyebrow">AI Experience</p>
+          <h2 id="ai-title">AI 에이전트를 요구사항을 검증하는 도구로 사용합니다</h2>
+        </div>
+        <div class="ai-card">
+          <div class="ai-timeline" aria-label="AI 도구 사용 이력">
+            <span>2022 말 - 2023 초 · GitHub Copilot</span>
+            <span>2023 - 2025 말 · Cursor</span>
+            <span>2025 말 · Antigravity</span>
+            <span>2025 말 - 2026 초 · Claude Code</span>
+            <span>약 1개월 · 오마이 오픈코드</span>
+            <span>2026.05 - 현재 · Codex + Claude Code</span>
+            <span>Home lab · 오픈클로 실험</span>
+          </div>
+          <div class="ai-copy">
+            <p>
+              2022년 말부터 Copilot, Cursor, Antigravity, Claude Code, Codex 등 여러 AI 개발 도구와
+              에이전트 워크플로를 실제 개발에 써왔습니다. 집에서는 오픈클로를 돌리며 자동 스레드 봇을 실험했고,
+              게임 개발 기획용 계정 운영 중 봇 검사에 걸려 중단된 경험도 있습니다.
+            </p>
+            <p>
+              다양한 개발 에이전트들을 써보면서 일관되게 느낀 점은 에이전트와 개발을 하는 일은 외주개발을 맡기는
+              고객이 되는 일과 같다는 점입니다. 화려한 자동화나 도구를 붙여도 결국은 제대로 된 의도를 가진 요구사항을
+              원하는 수준으로 입력해 줘야 원하는 결과를 얻는다는 것입니다. 외주 미팅에서 종종 '본인이 뭘 원하는지 모르는'
+              의뢰인들을 맞닥뜨린 경험들이 있는데, 저도 AI를 쓸 때 자주 그런 상태가 되어 있다는 것을 알게 되었습니다.
+            </p>
+            <p>
+              그래서 최근에는 복잡한 도구 레이어를 줄이고, 플레인 Codex와 플레인 Claude Code를 중심으로 씁니다.
+              구현보다 기획과 planning 단계에서 “내가 원하는 것이 정확히 맞는지”를 확인하는 데 더 많은 시간을 씁니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section education-section" aria-labelledby="education-title">
+        <div class="section-heading">
+          <p class="eyebrow">Education & Etc.</p>
+          <h2 id="education-title">Education</h2>
+        </div>
+        <div class="education-grid">
+          <article>
+            <h3>KAIST 한국과학기술원</h3>
+            <p>전산학부 학사 · 수리과학과 부전공</p>
+            <p>2018.03 - 2025.08 · GPA 3.48 / 4.3 · 전공 GPA 3.70 / 4.3</p>
+          </article>
+          <article>
+            <h3>Etc.</h3>
+            <p>TOEFL iBT 103 · KAIST 밴드 동아리 동틀무렵 활동</p>
+            <p>봉천동 독서모임 운영 경험: 회원 200명 이상, 온보딩과 책 큐레이션 경험</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="work" class="section" aria-labelledby="work-title">
+        <div class="section-heading">
+          <p class="eyebrow">Experience</p>
+          <h2 id="work-title">Work Experience</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-date">2025.06 - 2026.02</div>
+            <div class="timeline-body">
+              <h3>OnTheMarket</h3>
+              <p class="role">Co-founder · CTO · Full-stack Engineer</p>
+              <p>
+                음식점과 유통업체 사이의 B2B 식자재 발주 제품을 2인 팀에서 만들었습니다.
+                음식점용 크로스 플랫폼 웹앱, 유통업체 웹사이트, 관리자 페이지, 서버, DB 스키마,
+                결제, 푸시, 분석 연동과 운영 개선을 맡았습니다.
+              </p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">2023.03 - 현재</div>
+            <div class="timeline-body">
+              <h3>TingtingPlanet</h3>
+              <p class="role">Founder · Full-stack Engineer</p>
+              <p>
+                외주와 자체 서비스를 오가며 AI, 채팅, PDF, 내부 운영 도구, 모바일 웹앱 프로젝트를
+                개발 및 납품했습니다. 고객 상담에서 나온 기대 수준과 우선순위를 제품 흐름으로 정리했습니다.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section projects" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <p class="eyebrow">Selected Work</p>
+          <h2 id="projects-title">대표 프로젝트</h2>
+        </div>
+
+        <article class="project-card feature-card">
+          <div class="project-header">
+            <div>
+              <p class="project-kicker">B2B ordering · 2025.06 - 2026.02</p>
+              <h3>OnTheMarket</h3>
+              <p class="project-subtitle">음식점 점주가 유통업체에 식자재를 발주하는 모바일 중심 제품</p>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/tkd992006/onTheMarket" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+          </div>
+
+          <div class="impact-list" aria-label="OnTheMarket 성과">
+            <span>유통업체 7곳</span>
+            <span>OnTheMarket 가입 음식점 130+곳</span>
+            <span>3개월 누적 거래액 2,000만원</span>
+          </div>
+
+          <p>
+            상품 탐색, 식자재 추가, 빠른 주문, 주문 확인, 결제까지 이어지는 핵심 흐름을 구현했습니다.
+            점주가 실제로 주문하는 순서에 맞춰 정보 노출 타이밍과 확인 화면을 반복 조정했습니다.
+          </p>
+
+          <div class="project-grid">
+            <div>
+              <h4>What I did</h4>
+              <ul>
+                <li>React, Capacitor 기반 iOS / Android / Web 클라이언트 구현</li>
+                <li>상품, 거래처, 장바구니, 주문 상태를 위한 API와 DB 스키마 설계</li>
+                <li>TossPayments, Firebase Push, Google Analytics 연동</li>
+                <li>큰 글씨 설정, 기기별 레이아웃, 가격 정보 노출 타이밍 개선</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Tech Stack</h4>
+              <p class="tag-cloud">
+                <span>AkanJS</span><span>TypeScript</span><span>Next.js 15</span><span>React 19</span>
+                <span>Capacitor 7</span><span>NestJS</span><span>MongoDB</span><span>GraphQL</span>
+              </p>
+            </div>
+            <div>
+              <h4>Learned</h4>
+              <p>
+                주문 발송용 화면은 예쁜 것보다 덜 헷갈리는 것이 먼저였습니다. 상품명, 단위,
+                수량, 업체, 결제 전 확인 중 하나만 어긋나도 사용자가 멈추기 때문에 화면을 줄이고
+                폼의 순서를 실제 업무 흐름에 맞췄습니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="media-strip phone-strip" aria-label="OnTheMarket 앱 화면">
+            <button class="media-button phone-frame" data-lightbox="assets/images/onthemarket-app-1.webp" aria-label="OnTheMarket 앱 화면 1 크게 보기">
+              <img src="assets/images/onthemarket-app-1.webp" alt="OnTheMarket 모바일 앱 상품 화면" loading="lazy" decoding="async">
+            </button>
+            <button class="media-button phone-frame" data-lightbox="assets/images/onthemarket-app-2.webp" aria-label="OnTheMarket 앱 화면 2 크게 보기">
+              <img src="assets/images/onthemarket-app-2.webp" alt="OnTheMarket 모바일 앱 주문 화면" loading="lazy" decoding="async">
+            </button>
+            <button class="media-button phone-frame" data-lightbox="assets/images/onthemarket-app-3.webp" aria-label="OnTheMarket 앱 화면 3 크게 보기">
+              <img src="assets/images/onthemarket-app-3.webp" alt="OnTheMarket 모바일 앱 장바구니 화면" loading="lazy" decoding="async">
+            </button>
+            <button class="media-button phone-frame" data-lightbox="assets/images/onthemarket-app-4.webp" aria-label="OnTheMarket 앱 화면 4 크게 보기">
+              <img src="assets/images/onthemarket-app-4.webp" alt="OnTheMarket 모바일 앱 결제 화면" loading="lazy" decoding="async">
+            </button>
+            <button class="media-button phone-frame" data-lightbox="assets/images/onthemarket-app-5.webp" aria-label="OnTheMarket 앱 화면 5 크게 보기">
+              <img src="assets/images/onthemarket-app-5.webp" alt="OnTheMarket 모바일 앱 주문 확인 화면" loading="lazy" decoding="async">
+            </button>
+            <button class="media-button phone-frame" data-lightbox="assets/images/onthemarket-app-6.webp" aria-label="OnTheMarket 앱 화면 6 크게 보기">
+              <img src="assets/images/onthemarket-app-6.webp" alt="OnTheMarket 모바일 앱 알림 화면" loading="lazy" decoding="async">
+            </button>
+          </div>
+
+          <div class="campaign-block">
+            <div>
+              <p class="project-kicker">Growth campaign</p>
+              <h4>가격 진단 캠페인</h4>
+              <p>
+                앱 설치 전에 점주가 “우리 가게 야채값이 비싼가?”를 확인할 수 있게 만들었습니다.
+                영수증이나 납품서 이미지를 올리면 현재 구매가와 예상가를 비교해 품목별 차액과 예상 절감액을 보여줍니다.
+              </p>
+            </div>
+            <div class="media-grid compact-grid" aria-label="OnTheMarket 가격 진단 화면">
+              <button class="media-button wide-shot" data-lightbox="assets/images/onthemarket-price-1.webp" aria-label="가격 진단 캠페인 화면 1 크게 보기">
+                <img src="assets/images/onthemarket-price-1.webp" alt="가격 진단 캠페인 업로드 화면" loading="lazy" decoding="async">
+              </button>
+              <button class="media-button wide-shot" data-lightbox="assets/images/onthemarket-price-2.webp" aria-label="가격 진단 캠페인 화면 2 크게 보기">
+                <img src="assets/images/onthemarket-price-2.webp" alt="가격 진단 캠페인 결과 화면" loading="lazy" decoding="async">
+              </button>
+              <button class="media-button tall-shot" data-lightbox="assets/images/onthemarket-price-5.webp" aria-label="가격 비교 결과 화면 1 크게 보기">
+                <img src="assets/images/onthemarket-price-5.webp" alt="품목별 가격 비교 결과 화면" loading="lazy" decoding="async">
+              </button>
+              <button class="media-button tall-shot" data-lightbox="assets/images/onthemarket-price-6.webp" aria-label="가격 비교 결과 화면 2 크게 보기">
+                <img src="assets/images/onthemarket-price-6.webp" alt="예상 절감액 결과 화면" loading="lazy" decoding="async">
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-header">
+            <div>
+              <p class="project-kicker">AI consultation · 2024</p>
+              <h3>SYRS AI Lab</h3>
+              <p class="project-subtitle">AI 기반 매장 상담 및 제품 추천 서비스</p>
+            </div>
+            <div class="project-links">
+              <a href="https://ai.syrs.kr/" target="_blank" rel="noreferrer">Live</a>
+              <a href="https://www.instagram.com/reel/C7Q5fhJOSKa/" target="_blank" rel="noreferrer">Reel</a>
+            </div>
+          </div>
+          <div class="impact-list">
+            <span>연희동 SYRS 플래그십 매장 사용</span>
+            <span>Ipad 매장 상담용 웹앱</span>
+          </div>
+          <p>
+            피부 현미경 촬영 이미지를 바탕으로 AI 피부 진단 결과, 결과에 맞는 제품 추천, 사용 전후 비교를
+            고객이 바로 이해할 수 있는 화면으로 정리했습니다.
+          </p>
+          <div class="project-grid">
+            <div>
+              <h4>What I did</h4>
+              <ul>
+                <li>AI 결과 화면과 추천 제품 카드 구현</li>
+                <li>사용 전후 비교 흐름 구성</li>
+                <li>4개국 locale 시스템 적용</li>
+                <li>AI 코멘트가 길어져도 무너지지 않는 화면 밀도 조정</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Tech Stack</h4>
+              <p class="tag-cloud"><span>TypeScript</span><span>Next.js 13</span><span>NestJS</span><span>ChatGPT API</span><span>MongoDB</span><span>GraphQL</span></p>
+            </div>
+            <div>
+              <h4>Learned</h4>
+              <p>
+                매장 비치용 iPad에서 쓰는 제품이라 다양한 반응형보다 특정 화면에서의 안정성이 중요했습니다.
+                10초 내외 분석 시간을 로딩 애니메이션과 분석 문구로 자연스럽게 연결했습니다.
+              </p>
+            </div>
+          </div>
+          <div class="media-grid three-grid">
+            <button class="media-button tall-shot" data-lightbox="assets/images/syrs-1.webp" aria-label="SYRS 상담 화면 1 크게 보기">
+              <img src="assets/images/syrs-1.webp" alt="SYRS AI Lab 피부 분석 결과 화면" loading="lazy" decoding="async">
+            </button>
+            <button class="media-button tall-shot" data-lightbox="assets/images/syrs-2.webp" aria-label="SYRS 상담 화면 2 크게 보기">
+              <img src="assets/images/syrs-2.webp" alt="SYRS AI Lab 추천 제품 화면" loading="lazy" decoding="async">
+            </button>
+            <button class="media-button square-shot" data-lightbox="assets/images/syrs-reel.webp" aria-label="SYRS 매장 릴스 크게 보기">
+              <img src="assets/images/syrs-reel.webp" alt="SYRS 매장 상담 서비스 릴스" loading="lazy" decoding="async">
+            </button>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-header">
+            <div>
+              <p class="project-kicker">Algorithm tool · 2025</p>
+              <h3>Gagageul</h3>
+              <p class="project-subtitle">끝말잇기 탐색 조건 커스텀 프로젝트</p>
+            </div>
+            <div class="project-links">
+              <a href="https://tingtingplanet.github.io/gagageul/" target="_blank" rel="noreferrer">Live</a>
+              <a href="https://github.com/tingtingplanet/gagageul" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+          </div>
+          <div class="impact-list">
+            <span>7일+ 트리 탐색을 30분으로</span>
+            <span>끝말잇기 단어 트리 탐색 엔진 확장</span>
+          </div>
+          <p>
+            기존 끝말잇기 탐색 서비스를 기반으로 사용자가 탐색 조건과 우선순위를 직접 바꿀 수 있게 확장했습니다.
+            기존 코드 구조를 읽고 알고리즘 흐름에 조건 엔진을 연결한 프로젝트입니다.
+          </p>
+          <div class="project-grid">
+            <div>
+              <h4>What I did</h4>
+              <ul>
+                <li>여러 조건을 동시에 다루는 <code>customConditions</code> 구조 추가</li>
+                <li>시작 글자, 끝 글자, 포함 글자 기준 조건 타입 분리</li>
+                <li>단어 계산 순서 탭과 조건 카드 추가 / 삭제 / 수정 UI 구현</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Tech Stack</h4>
+              <p class="tag-cloud"><span>TypeScript</span><span>React</span><span>Search UI</span><span>Condition engine</span></p>
+            </div>
+            <div>
+              <h4>Learned</h4>
+              <p>
+                촉박한 일정에서 새 구조를 얹기보다 기존 객체의 책임을 먼저 파악하는 편이 더 빨랐습니다.
+                조건 엔진과 인터페이스를 작게 바꿔 탐색 흐름에 연결했습니다.
+              </p>
+            </div>
+          </div>
+          <button class="media-button full-shot" data-lightbox="assets/images/gagageul.webp" aria-label="Gagageul 화면 크게 보기">
+            <img src="assets/images/gagageul.webp" alt="Gagageul 조건 커스텀 탐색 화면" loading="lazy" decoding="async">
+          </button>
+        </article>
+
+        <article class="project-card">
+          <div class="project-header">
+            <div>
+              <p class="project-kicker">Internal tool · 2023</p>
+              <h3>Akasys</h3>
+              <p class="project-subtitle">고객 문의, 내부 티켓, 주간 리포트를 연결하는 사내 프로젝트 관리 도구</p>
+            </div>
+          </div>
+          <p>
+            반복해서 확인하는 정보를 빠르게 읽을 수 있도록 프로젝트 클러스터, 티켓 상태, 리포트 화면의 정보 구조를 정리했습니다.
+          </p>
+          <div class="project-grid">
+            <div>
+              <h4>What I did</h4>
+              <ul>
+                <li>프로젝트 단위 클러스터 화면 구현</li>
+                <li>티켓 관리 화면과 리포트로 이어지는 상태 흐름 정리</li>
+                <li>운영 화면의 반복 확인 정보를 빠르게 읽히도록 재배치</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Tech Stack</h4>
+              <p class="tag-cloud"><span>React</span><span>Internal tool UI</span><span>Ticket status flow</span><span>Report screen</span></p>
+            </div>
+            <div>
+              <h4>Learned</h4>
+              <p>내부 도구는 예쁜 화면보다 반복 업무를 줄이는 정보 배치와 상태 흐름이 중요했습니다.</p>
+            </div>
+          </div>
+          <button class="media-button full-shot tall-desktop-shot contain-shot" data-lightbox="assets/images/akasys.webp" aria-label="Akasys 화면 크게 보기">
+            <img src="assets/images/akasys.webp" alt="Akasys 내부 프로젝트 관리 화면" loading="lazy" decoding="async">
+          </button>
+        </article>
+
+        <article class="project-card">
+          <div class="project-header">
+            <div>
+              <p class="project-kicker">Mobile web app · 2023</p>
+              <h3>Local Jobs</h3>
+              <p class="project-subtitle">지역 연계 일자리 매칭 웹 / 앱</p>
+            </div>
+          </div>
+          <div class="impact-list">
+            <span>예비창업자 패키지 선정</span>
+            <span>정부 지원 사업 4,800만원</span>
+          </div>
+          <p>
+            정부 지원 사업으로 납품한 지역 일자리 매칭 서비스입니다. 공고 확인, 지원, 매칭 상태, 실시간 채팅으로 이어지는 흐름을 구현했습니다.
+          </p>
+          <div class="project-grid">
+            <div>
+              <h4>What I did</h4>
+              <ul>
+                <li>일자리 모집 정보 확인 흐름 구현</li>
+                <li>지원 및 매칭 상태 화면 구현</li>
+                <li>실시간 웹 기반 채팅 기능 구현</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Tech Stack</h4>
+              <p class="tag-cloud"><span>TypeScript</span><span>Next.js</span><span>NestJS</span><span>WebSocket</span><span>MongoDB</span><span>GraphQL</span></p>
+            </div>
+          </div>
+          <button class="media-button phone-frame single-phone" data-lightbox="assets/images/local-jobs.webp" aria-label="Local Jobs 화면 크게 보기">
+            <img src="assets/images/local-jobs.webp" alt="Local Jobs 모바일 일자리 공고 화면" loading="lazy" decoding="async">
+          </button>
+        </article>
+      </section>
+
+      <section class="section" aria-labelledby="other-title">
+        <div class="section-heading">
+          <p class="eyebrow">More Work</p>
+          <h2 id="other-title">Other Projects</h2>
+        </div>
+        <div class="mini-project-grid">
+          <article class="mini-project">
+            <div class="mini-media two-up">
+              <img src="assets/images/chaptertwo-1.webp" alt="ChapterTwo 리포트 화면" loading="lazy" decoding="async">
+              <img src="assets/images/chaptertwo-2.webp" alt="ChapterTwo 설문 화면" loading="lazy" decoding="async">
+            </div>
+            <h3>ChapterTwo</h3>
+            <p class="project-subtitle">강점 진단 설문 및 A4 리포트 서비스 · 2024-2025</p>
+            <p>설문 단계 관리, 결과 화면, 글자 크기 조절, PDF 다운로드 기능을 구현했습니다.</p>
+          </article>
+
+          <article class="mini-project">
+            <div class="mini-media two-up">
+              <img src="assets/images/clackclack-1.webp" alt="ClackClack 매장 정보 화면" loading="lazy" decoding="async">
+              <img src="assets/images/clackclack-2.webp" alt="ClackClack 일정 화면" loading="lazy" decoding="async">
+            </div>
+            <h3>ClackClack Platform</h3>
+            <p class="project-subtitle">매장 정보 및 일정 확인 플랫폼 · 2023</p>
+            <p>매장 정보, 일정, 커뮤니티가 필요한 납품 서비스의 프론트 화면과 백엔드 로직을 구현했습니다.</p>
+          </article>
+
+          <article class="mini-project">
+            <div class="mini-media">
+              <img src="assets/images/jobonger-1.webp" alt="JoBonger 작품 선택 화면" loading="lazy" decoding="async">
+            </div>
+            <h3>JoBonger</h3>
+            <p class="project-subtitle">호텔 미술작품 큐레이션 서비스 · 2024</p>
+            <p>호텔 객실과 로비 디스플레이에 독립 예술가 작품을 큐레이션하는 화면을 구현했습니다.</p>
+          </article>
+
+          <article class="mini-project">
+            <div class="mini-media">
+              <img src="assets/images/playai-1.webp" alt="Play AI SSO 화면" loading="lazy" decoding="async">
+            </div>
+            <h3>Play AI SSO</h3>
+            <p class="project-subtitle">크립토 게임 SSO 기능 및 프론트 화면 · 2024</p>
+            <p>소셜 계정과 Web3 지갑 연결 전, 연결 중, 완료, 실패 상태를 한 화면에서 관리하도록 구현했습니다.</p>
+          </article>
+
+          <article class="mini-project">
+            <div class="mini-media">
+              <img src="assets/images/sloths.webp" alt="SLOTHS ON THE RUN 랜딩 화면" loading="lazy" decoding="async">
+            </div>
+            <h3>SLOTHS ON THE RUN</h3>
+            <p class="project-subtitle">Web3 해커톤 프로젝트 · 2023</p>
+            <p class="tag-cloud"><span>ETH Denver 2023 bounty winner</span></p>
+            <p>지갑 연결, NFT 예금, mint, redeem 흐름과 랜딩 페이지를 구현했습니다.</p>
+            <div class="project-links inline-links">
+              <a href="https://app.buidlbox.io/projects/sloths-on-the-run" target="_blank" rel="noreferrer">Buidlbox</a>
+              <a href="https://youtu.be/YgUZfjVnLFM" target="_blank" rel="noreferrer">Demo</a>
+            </div>
+          </article>
+
+          <article class="mini-project">
+            <div class="mini-media">
+              <img src="assets/images/hashmoss.webp" alt="Hashmoss NFT SNS 화면" loading="lazy" decoding="async">
+            </div>
+            <h3>Hashmoss</h3>
+            <p class="project-subtitle">NFT 기반 SNS 프로젝트 · 2022</p>
+            <p>프로필, 컬렉션, 커뮤니티형 화면과 Web3 서비스의 소유 상태 표현을 구현했습니다.</p>
+          </article>
+
+          <article class="mini-project text-only">
+            <h3>Watch Wise</h3>
+            <p class="project-subtitle">영화 데이터베이스 설계 및 크롤링 서비스 · 2023</p>
+            <p>영화 추천 서비스에 필요한 데이터 스키마를 설계하고 TMDB API를 활용해 국내 영화 데이터를 선별 수집했습니다.</p>
+            <p class="tag-cloud"><span>TypeScript</span><span>DynamoDB</span><span>AWS Lambda</span><span>TMDB API</span></p>
+          </article>
+
+          <article class="mini-project text-only">
+            <h3>Mounting</h3>
+            <p class="project-subtitle">시니어 등산 / 여행 매칭 서비스 · 2023</p>
+            <p>회원 123명을 모은 자체 서비스에서 채팅 프론트, 백엔드 모듈, 채팅 스키마를 구현했습니다.</p>
+            <p class="tag-cloud"><span>Next.js</span><span>React Native</span><span>Capacitor</span><span>NestJS</span><span>Firebase Push</span></p>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills" class="section skills-section" aria-labelledby="skills-title">
+        <div class="section-heading">
+          <p class="eyebrow">Skills</p>
+          <h2 id="skills-title">기술과 협업 맥락</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h3>Frontend</h3>
+            <p>TypeScript, React, Next.js, Tailwind CSS, mobile web app UI</p>
+          </div>
+          <div class="skill-group">
+            <h3>Product Integration</h3>
+            <p>TossPayments, Firebase Push, Google Analytics, WebSocket chat, PDF download, AI response UI</p>
+          </div>
+          <div class="skill-group">
+            <h3>Backend / Data</h3>
+            <p>NestJS, GraphQL, MongoDB, PostgreSQL, Node.js, Python</p>
+          </div>
+          <div class="skill-group">
+            <h3>Context</h3>
+            <p>Docker, Jenkins, Kubernetes, cloud environment 이해 및 협업 경험</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-section" aria-labelledby="contact-title">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">제품 맥락을 이해하고 끝까지 다듬는 일을 좋아합니다.</h2>
+        <div class="contact-links">
+          <a href="mailto:tkd99200622@gmail.com">tkd99200622@gmail.com</a>
+          <a href="https://github.com/tkd992006" target="_blank" rel="noreferrer">github.com/tkd992006</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 이상화</span>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <dialog class="lightbox" aria-label="이미지 크게 보기">
+      <button class="lightbox-close" type="button" aria-label="닫기">×</button>
+      <img alt="">
+    </dialog>
+
+    <script src="script.js"></script>
+  </body>
+</html>
