@@ -8,8 +8,9 @@ document.querySelectorAll("[data-lightbox]").forEach((button) => {
 
     const imagePath = button.getAttribute("data-lightbox");
     const image = button.querySelector("img");
-    lightboxImage.src = imagePath || "";
-    lightboxImage.alt = image?.alt || "Portfolio image";
+    if (!imagePath) return;
+    lightboxImage.src = imagePath;
+    lightboxImage.alt = image?.alt || "포트폴리오 이미지";
     lightbox.showModal();
   });
 });
@@ -18,17 +19,26 @@ closeButton?.addEventListener("click", () => {
   lightbox?.close();
 });
 
-lightbox?.addEventListener("click", (event) => {
-  if (event.target === lightbox) {
-    lightbox.close();
-  }
+lightbox?.addEventListener("close", () => {
+  lightboxImage?.removeAttribute("src");
 });
 
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && lightbox?.open) {
-    lightbox.close();
-  }
-});
+// backdrop 닫기: 모달 안 텍스트를 드래그하다 backdrop 위에서 놓아도 닫히지 않도록
+// press와 release가 모두 backdrop에서 일어난 경우에만 닫는다.
+const enableBackdropClose = (dialog) => {
+  let pressedOnBackdrop = false;
+  dialog.addEventListener("pointerdown", (event) => {
+    pressedOnBackdrop = event.target === dialog;
+  });
+  dialog.addEventListener("click", (event) => {
+    if (pressedOnBackdrop && event.target === dialog) {
+      dialog.close();
+    }
+    pressedOnBackdrop = false;
+  });
+};
+
+if (lightbox) enableBackdropClose(lightbox);
 
 const amaQuestions = document.querySelectorAll("[data-ama-target]");
 const amaAnswers = document.querySelectorAll(".ama-answer");
@@ -103,27 +113,6 @@ const caseOpenButtons = document.querySelectorAll("[data-case-open]");
 const caseModals = document.querySelectorAll(".case-modal");
 const caseReturnFocus = new WeakMap();
 
-const activateCaseTab = (caseModal, selectedTab, shouldFocus = false) => {
-  const caseTabs = Array.from(caseModal.querySelectorAll("[data-case-tab]"));
-  const casePanels = Array.from(caseModal.querySelectorAll("[role='tabpanel']"));
-  const targetId = selectedTab.getAttribute("data-case-tab");
-
-  caseTabs.forEach((tab) => {
-    const isSelected = tab === selectedTab;
-    tab.classList.toggle("is-active", isSelected);
-    tab.setAttribute("aria-selected", String(isSelected));
-    tab.tabIndex = isSelected ? 0 : -1;
-  });
-
-  casePanels.forEach((panel) => {
-    panel.hidden = panel.id !== targetId;
-  });
-
-  if (shouldFocus) {
-    selectedTab.focus();
-  }
-};
-
 caseOpenButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const targetId = button.getAttribute("data-case-open");
@@ -137,42 +126,17 @@ caseOpenButtons.forEach((button) => {
 
 caseModals.forEach((caseModal) => {
   const caseCloseButton = caseModal.querySelector("[data-case-close]");
-  const caseTabs = Array.from(caseModal.querySelectorAll("[data-case-tab]"));
 
   caseCloseButton?.addEventListener("click", () => {
     caseModal.close();
   });
 
-  caseModal.addEventListener("click", (event) => {
-    if (event.target === caseModal) {
-      caseModal.close();
-    }
-  });
+  enableBackdropClose(caseModal);
 
   caseModal.addEventListener("close", () => {
     const returnFocus = caseReturnFocus.get(caseModal);
     if (returnFocus instanceof HTMLElement) {
       returnFocus.focus({ preventScroll: true });
     }
-  });
-
-  caseTabs.forEach((tab, tabIndex) => {
-    tab.addEventListener("click", () => {
-      activateCaseTab(caseModal, tab);
-    });
-
-    tab.addEventListener("keydown", (event) => {
-      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
-
-      event.preventDefault();
-      let nextIndex = tabIndex;
-
-      if (event.key === "ArrowRight") nextIndex = (tabIndex + 1) % caseTabs.length;
-      if (event.key === "ArrowLeft") nextIndex = (tabIndex - 1 + caseTabs.length) % caseTabs.length;
-      if (event.key === "Home") nextIndex = 0;
-      if (event.key === "End") nextIndex = caseTabs.length - 1;
-
-      activateCaseTab(caseModal, caseTabs[nextIndex], true);
-    });
   });
 });
