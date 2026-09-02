@@ -4,9 +4,9 @@ GitHub Pages에 바로 배포할 수 있는 정적 포트폴리오입니다.
 
 ## Files
 
-- `index.html`: 포트폴리오 본문
+- `index.html`: 포트폴리오 본문 (AMA 탭, 케이스 스터디 모달 6종, 코드 발췌 토글 포함)
 - `styles.css`: 반응형 레이아웃과 시각 스타일
-- `script.js`: 이미지 확대 보기
+- `script.js`: AMA 탭 전환, 케이스 스터디 모달, 이미지 확대 보기
 - `assets/images/`: WebP로 최적화한 프로젝트 이미지
 
 ## GitHub Pages
