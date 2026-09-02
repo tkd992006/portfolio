@@ -3270,10 +3270,15 @@ body:has(dialog[open]) {
 @media (max-width: 520px) {
   .site-header {
     gap: 0.5rem;
+    padding-inline: 0.75rem;
   }
 
   .nav-links {
-    gap: 0.55rem;
-    font-size: 0.82rem;
+    gap: 0.1rem;
+  }
+
+  .nav-links a {
+    padding: 0.5rem 0.42rem;
+    font-size: 0.78rem;
   }
 }
