@@ -19,6 +19,8 @@
   --blue: #2d4bd2;
   --shadow: 0 18px 50px rgba(23, 27, 24, 0.08);
   --text-max: 720px;
+  /* 셸 콘텐츠 최대 폭: rail 236px + stage padding 2 × 2.75rem + panel 1120px */
+  --shell-max: calc(236px + 5.5rem + 1120px);
 
   /* shell */
   --edge: rgba(23, 27, 24, 0.12);
@@ -133,7 +135,8 @@ p {
   justify-content: space-between;
   gap: 1.5rem;
   border-bottom: 1px solid rgba(23, 27, 24, 0.22);
-  padding: 1rem 1.75rem 0.85rem;
+  /* 워크스페이스와 같은 폭 안에 이름·연락처를 모은다 (구분선은 화면 전체 폭 유지) */
+  padding: 1rem max(1.75rem, calc((100% - var(--shell-max)) / 2)) 0.85rem;
 }
 
 .masthead-name {
@@ -485,8 +488,7 @@ p {
   grid-template-columns: 236px minmax(0, 1fr);
   justify-self: center;
   width: 100%;
-  /* rail 236px + stage padding 2 × 2.75rem + panel 1120px */
-  max-width: calc(236px + 5.5rem + 1120px);
+  max-width: var(--shell-max);
   min-width: 0;
   min-height: 0;
 }
