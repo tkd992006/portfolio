@@ -2,21 +2,31 @@
 
 GitHub Pages에 바로 배포할 수 있는 정적 포트폴리오입니다.
 
+## Versions
+
+| URL | 내용 |
+| --- | --- |
+| `/` | 최신(v3): 무스크롤 앱 셸 + 페이퍼·코발트 디자인 |
+| `/v2/` | 다크 테마 앱 셸(같은 구조, 이전 안) |
+| `/v1/` | 원본 롱스크롤 사이트(재설계 이전, 커밋 `3ba0eb5` 기준) |
+
+`v1/`, `v2/`는 독립된 정적 폴더로, 이미지는 루트의 `assets/`를 `../assets/`로 참조합니다.
+
 ## Layout
 
-- 상단 **에디토리얼 연표**: 큰 이름, 역할/연락처, 2018–현재 연표를 하나의 표지처럼 구성했습니다. Education · AI 사용 · Work Experience · Projects를 동일한 월 축에 표시하되, 막대 안 텍스트와 다색 UI를 없애고 완료(회색) · 진행 중(코발트) · 대표 작업(검정) · 아카이브(회색 점)만 사용합니다. 항목은 hover/focus 시 제목과 기간이 나타나고, 누르면 해당 패널·항목으로 이동합니다.
-- 사건이 없는 2019–2021 구간은 축에서 생략하고 `2018 // 2022`로 이어 붙였습니다. Projects는 여러 겹의 기간 막대 대신 한 연결선 위에 연도별 제작 순서대로 점을 배치하는 단일 트랙입니다. 대표 작업은 검은 점, 나머지는 빈 점으로 구분하며 정확한 기간은 tooltip에 유지합니다. 현재 월과 축 끝은 실행 시점의 날짜로 계산합니다. 데이터는 `script.js`의 `CHRONO_TRACKS`에서 관리합니다.
-- 좌측 **섹션 인덱스** + 우측 **컨텐트 패널**: Overview(히어로 + 핵심 성과 + AMA + Profile + Contact) · AI & Workflow · Experience · Selected Work · Project Archive. 해시(`#selected-work`, `#project-syrs` 등)로 딥링크되며 뒤로 가기도 동작합니다.
-- **Selected Work**는 한눈에 보는 리스트(기간·제목·성과 칩)이고, 항목을 누르면 문제 해결 사례·담당 범위·기술 스택·화면이 펼쳐집니다. 케이스 스터디 모달 6종은 그대로 유지됩니다.
-- 900px 이하에서는 섹션 인덱스가 상단 가로 탭으로 바뀝니다. 760px 이하에서는 연표를 과감히 숨기고 이름·역할 다음에 바로 소개와 작업으로 진입합니다.
+뷰포트 안에서 패널을 전환하는 앱 셸입니다(페이지 스크롤 없음, 900px 이하에서는 일반 스크롤).
+
+- **마스트헤드**: 이름(Archivo), 역할·스택(IBM Plex Mono), 이메일·GitHub.
+- **연표**: Education · AI tools · Work(2줄) · Projects 네 트랙을 2018→현재 월 축에 얇은 막대(기간)와 점(연 단위 프로젝트)으로 표시합니다. 사건이 없는 2019–2021은 `//` 단절로 생략합니다. 막대에 hover하면 이름·기간 툴팁, 클릭하면 해당 패널·항목으로 이동합니다. 데이터는 `script.js`의 `CHRONO_TRACKS`(`start`/`end`는 `YYYY-MM` 또는 `now`, 연 단위는 `year`, 연 단위 범위는 `approx: true`).
+- **좌측 인덱스 + 우측 패널**: Who Am I(소개·AMA) · AI Experience · Education + Work(Education·Work·Skills) · Selected Work · Portfolio. 해시(`#selected-work`, `#project-syrs`, `#portfolio-hashmoss` 등)로 딥링크되며 뒤로 가기도 동작합니다.
+- **시트(dialog)**: Selected Work 행과 Portfolio 카드를 누르면 상세가 열립니다. 케이스 스터디 6종은 시트 안에서 열리며, 상단 탭 바(전체 단계 + 현재 언더라인)와 하단 이전/다음으로 한 단계씩 봅니다.
 
 ## Files
 
-- `index.html`: 에디토리얼 masthead, 연표 컨테이너, 섹션 네비, 5개 패널(AMA 탭, Selected Work 아코디언, 케이스 스터디 모달 6종, 코드 발췌 토글 포함)
-- `styles.css`: Archivo/Pretendard/IBM Plex Mono 타이포 역할, 연표·섹션 인덱스·패널, 컨테이너 쿼리 기반 반응형
-- `script.js`: 연표 렌더링(`CHRONO_TRACKS`), 해시 라우팅(패널 전환·딥링크), Selected Work 아코디언, AMA 탭, 케이스 스터디 모달, 이미지 확대 보기
+- `index.html`: 마스트헤드, 연표 컨테이너, 인덱스 레일, 5개 패널, 프로젝트·포트폴리오 시트 13종, 케이스 스터디 모달 6종, 라이트박스
+- `styles.css`: 앱 셸·연표·패널·시트 스타일 + 케이스 스터디 문서 컴포넌트 스타일, 반응형
+- `script.js`: 연표 렌더링(`CHRONO_TRACKS`), 해시 라우팅, 시트/모달/라이트박스, 케이스 스터디 스텝퍼, AMA 탭
 - `assets/images/`: WebP로 최적화한 프로젝트 이미지
-- `DESIGN_REFERENCES.md`: 이번 개편에서 검토한 실제 포트폴리오 레퍼런스와 적용한 패턴
 
 ## GitHub Pages
 

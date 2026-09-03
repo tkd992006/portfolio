@@ -1,5 +1,5 @@
-// v3 — v2 app shell wearing the root design. Panels switch in place (no page
-// scroll); details open in sheets; the chronology is drawn from CHRONO_TRACKS.
+// v2 — dark app shell. Panels switch in place (no page scroll); details open in
+// sheets; the chronology at the top is drawn from CHRONO_TRACKS.
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -136,10 +136,8 @@ $$(".ama-followup-toggle").forEach((toggle) => {
 const CHRONO = {
   startYear: 2018,
   end: "2027-02", // 축의 마지막 달(포함). now 뒤에 약간의 여백
-  omitFrom: 2019, // 사건이 없는 2019–2021은 축에서 생략하고 // 단절로 잇는다
-  omitTo: 2021,
-  gapColumn: "22px",
-  firstYearScale: 0.55, // 2018은 폭을 조금 좁게
+  compressedUntil: 2021, // 항목이 드문 초반 연도는 폭을 좁게
+  compressedScale: 0.4,
   now: "2026-09",
 };
 
@@ -184,13 +182,9 @@ const CHRONO_TRACKS = [
   },
 ];
 
-// 그리드 열 인덱스: 2018년 12개월 → 단절 열 1개 → 2022년 1월부터 축 끝까지
-const GAP_INDEX = (CHRONO.omitFrom - CHRONO.startYear) * 12;
 const monthIndex = (ym) => {
   const [year, month] = (ym === "now" ? CHRONO.now : ym).split("-").map(Number);
-  if (year < CHRONO.omitFrom) return (year - CHRONO.startYear) * 12 + (month - 1);
-  if (year <= CHRONO.omitTo) return GAP_INDEX; // 생략 구간의 날짜는 단절 열에 붙는다
-  return GAP_INDEX + 1 + (year - CHRONO.omitTo - 1) * 12 + (month - 1);
+  return (year - CHRONO.startYear) * 12 + (month - 1);
 };
 const totalMonths = () => monthIndex(CHRONO.end) + 1;
 
@@ -254,21 +248,20 @@ const renderChrono = (grid) => {
 
   const total = totalMonths();
   const endYear = Number(CHRONO.end.split("-")[0]);
+  const compressed = (CHRONO.compressedUntil - CHRONO.startYear + 1) * 12;
   grid.style.setProperty(
     "--chrono-months",
-    `repeat(${GAP_INDEX}, minmax(0, ${CHRONO.firstYearScale}fr)) ${CHRONO.gapColumn} repeat(${total - GAP_INDEX - 1}, minmax(0, 1fr))`,
+    `repeat(${compressed}, minmax(0, ${CHRONO.compressedScale}fr)) repeat(${total - compressed}, minmax(0, 1fr))`,
   );
   grid.replaceChildren();
 
   const years = [];
-  for (let year = CHRONO.startYear; year <= endYear; year += 1) {
-    if (year < CHRONO.omitFrom || year > CHRONO.omitTo) years.push(year);
-  }
+  for (let year = CHRONO.startYear; year <= endYear; year += 1) years.push(year);
   years.forEach((year) => {
     const startIndex = monthIndex(`${year}-01`);
     const span = Math.min(12, total - startIndex);
     // 축 끝에 걸린 짧은 해는 눈금선만 남긴다
-    place(create("div", "chrono-year", span >= 6 ? String(year) : ""), `${column(startIndex)} / span ${span}`, "1");
+    place(create("div", "chrono-year", span >= 6 ? `’${String(year).slice(2)}` : ""), `${column(startIndex)} / span ${span}`, "1");
   });
 
   let row = 2;
@@ -298,9 +291,6 @@ const renderChrono = (grid) => {
   years.slice(1).forEach((year) => {
     place(create("div", "chrono-yearline"), String(column(monthIndex(`${year}-01`))), `2 / ${row}`);
   });
-  const gap = create("div", "chrono-gap");
-  gap.setAttribute("aria-label", `${CHRONO.omitFrom}–${CHRONO.omitTo} 생략`);
-  place(gap, String(column(GAP_INDEX)), `1 / ${row}`);
   place(create("div", "chrono-now"), String(column(monthIndex("now"))), `1 / ${row}`);
 };
 
@@ -395,7 +385,7 @@ $$(".case-modal").forEach((modal) => {
     const tab = document.createElement("button");
     tab.type = "button";
     tab.className = "case-step";
-    tab.innerHTML = `<span class="case-step-index">${String(index + 1).padStart(2, "0")}</span><span class="case-step-label">${label}</span>`;
+    tab.innerHTML = `<span class="case-step-index mono">${String(index + 1).padStart(2, "0")}</span><span class="case-step-label mono">${label}</span>`;
     tab.addEventListener("click", () => show(index));
     item.append(tab);
     list.append(item);
@@ -408,7 +398,7 @@ $$(".case-modal").forEach((modal) => {
   controls.className = "case-step-controls";
   controls.innerHTML = `
     <button class="case-step-btn" type="button" data-step-prev>← 이전 단계</button>
-    <span class="case-step-count" aria-live="polite"></span>
+    <span class="case-step-count mono" aria-live="polite"></span>
     <button class="case-step-btn is-primary" type="button" data-step-next>다음 단계 →</button>`;
   content.after(controls);
   const prevButton = controls.querySelector("[data-step-prev]");
