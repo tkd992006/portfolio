@@ -30,7 +30,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,300..900&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
     >
-    <link rel="stylesheet" href="styles.css?v=31">
+    <link rel="stylesheet" href="styles.css?v=32">
     <noscript>
       <style>
         html, body { height: auto; }
@@ -642,43 +642,6 @@
                 문제 해결 과정 보기 <span aria-hidden="true">↗</span>
               </span>
             </button>
-
-            <button
-              class="case-study-trigger is-compact"
-              type="button"
-              data-case-open="otm-price-editor-case"
-              aria-haspopup="dialog"
-              aria-controls="otm-price-editor-case"
-            >
-              <span class="case-study-trigger-meta">
-                <span class="case-study-trigger-index">Solved issue 03</span>
-                <span>React State · Data Integrity</span>
-              </span>
-              <span class="case-study-trigger-copy">
-                <strong>가격 수정 화면의 데이터 유실 방지</strong>
-                <span>화면 밖 기존 상품은 보존하고 최신 기록이 있는 값만 중첩 Map에 반영했습니다.</span>
-              </span>
-              <span class="case-study-trigger-action">사례 보기 <span aria-hidden="true">↗</span></span>
-            </button>
-
-            <button
-              class="case-study-trigger is-compact"
-              type="button"
-              data-case-open="otm-push-case"
-              aria-haspopup="dialog"
-              aria-controls="otm-push-case"
-            >
-              <span class="case-study-trigger-meta">
-                <span class="case-study-trigger-index">Solved issue 04</span>
-                <span>APNs · FCM · Capacitor</span>
-              </span>
-              <span class="case-study-trigger-copy">
-                <strong>네이티브 푸시 토큰 브리지</strong>
-                <span>OS 토큰과 웹 런타임, 서버의 topic/token 발송 경로를 연결했습니다.</span>
-              </span>
-              <span class="case-study-trigger-action">사례 보기 <span aria-hidden="true">↗</span></span>
-            </button>
-
             <button
               class="case-study-trigger is-compact"
               type="button"
@@ -687,7 +650,7 @@
               aria-controls="otm-receipt-case"
             >
               <span class="case-study-trigger-meta">
-                <span class="case-study-trigger-index">Solved issue 05</span>
+                <span class="case-study-trigger-index">Solved issue 03</span>
                 <span>Gemini · OCR · Product Flow</span>
               </span>
               <span class="case-study-trigger-copy">
@@ -705,7 +668,7 @@
               aria-controls="otm-ledger-cycle-case"
             >
               <span class="case-study-trigger-meta">
-                <span class="case-study-trigger-index">Solved issue 06</span>
+                <span class="case-study-trigger-index">Solved issue 04</span>
                 <span>NestJS DI · Domain Modeling · Atomicity</span>
               </span>
               <span class="case-study-trigger-copy">
@@ -1139,7 +1102,7 @@
       <div class="case-modal-shell">
         <header class="case-modal-header">
           <div>
-            <p class="case-modal-kicker">OnTheMarket · Solved issue 06</p>
+            <p class="case-modal-kicker">OnTheMarket · Solved issue 04</p>
             <h2 id="ledger-cycle-case-title">장부·상품 서비스의 순환 의존 해소</h2>
             <p id="ledger-cycle-case-description">
               견적 요청 기능을 붙이면서 서비스 DI에 순환이 생겼고, 두 서비스에 걸치는 작업을
@@ -1814,355 +1777,6 @@ DispatchQueue.main.asyncAfter(
         </div>
       </div>
     </dialog>
-
-    <dialog
-      class="case-modal"
-      id="otm-price-editor-case"
-      aria-labelledby="price-editor-case-title"
-      aria-describedby="price-editor-case-description"
-    >
-      <div class="case-modal-shell">
-        <header class="case-modal-header">
-          <div>
-            <p class="case-modal-kicker">OnTheMarket · Solved issue 03</p>
-            <h2 id="price-editor-case-title">화면 밖 가격표까지 저장 대상으로</h2>
-            <p id="price-editor-case-description">
-              운영 중 들어온 문의를 계기로 가격표 유실 문제를 추적해,
-              현재 보이는 목록이 아니라 전체 중첩 Map을 저장의 기준으로 다시 세운 작업입니다.
-            </p>
-          </div>
-          <button class="case-modal-close" type="button" data-case-close aria-label="문제 해결 사례 닫기">×</button>
-        </header>
-
-        <div class="case-modal-content case-narrative is-compact">
-          <section class="case-section" aria-labelledby="price-context">
-            <header class="case-section-header">
-              <p class="case-section-kicker">Problem &amp; constraint</p>
-              <h3 id="price-context">부분 로그를 전체 가격표로 착각해, 화면 밖 상품이 저장에서 빠졌습니다.</h3>
-              <p>
-                운영 중 유통사 사용자 문의를 계기로 저장 흐름을 추적했습니다. 화면은 카테고리·페이지별 일부 상품만 보여주고
-                최신 가격 로그도 기록된 상품만 포함할 수 있었지만, 저장 API는 전달받은 배열로 가격표 전체를 교체했습니다.
-              </p>
-            </header>
-            <div class="data-integrity-strip" aria-label="변경 전후 가격표 저장 단위">
-              <div><span>기존 가격표</span><strong>N개</strong></div>
-              <span aria-hidden="true">＋</span>
-              <div><span>최신 로그</span><strong>M개</strong></div>
-              <span aria-hidden="true">→</span>
-              <div class="is-bad"><span>Before</span><strong>M개만 저장</strong></div>
-              <span aria-hidden="true">→</span>
-              <div class="is-good"><span>After</span><strong>N개 row 유지</strong></div>
-            </div>
-          </section>
-
-          <section class="case-section" aria-labelledby="price-code-change">
-            <header class="case-section-header">
-              <p class="case-section-kicker">Code change</p>
-              <h3 id="price-code-change">새 Map을 만드는 대신, 기존 전체 Map 위에 ID 기준으로 덮었습니다.</h3>
-            </header>
-            <div class="code-change-grid">
-              <article class="code-card is-before">
-                <header><span>Before</span><strong>로그에 있는 항목으로 state 재생성</strong></header>
-                <pre><code>const newPricingCatalogs =
-  latestPricingLogs.pricingCatalogs
-    .filter((pc) =&gt;
-      catalogList.some((c) =&gt; c.id === pc.catalog.id)
-    );
-
-const newPricingCatalogsByCategory = new Map();
-
-newPricingCatalogs.forEach((pc) =&gt; {
-  const category =
-    getCategoryFromMasterCode(pc.catalog.masterCode);
-
-  if (!newPricingCatalogsByCategory.has(category)) {
-    newPricingCatalogsByCategory
-      .set(category, new Map());
-  }
-
-  newPricingCatalogsByCategory
-    .get(category)?.set(pc.catalog.id, pc);
-});
-
-setPricingCatalogsByCategory(
-  newPricingCatalogsByCategory
-);</code></pre>
-              </article>
-              <article class="code-card is-after">
-                <header><span>After</span><strong>전체 Map을 보존하고 가격만 overlay</strong></header>
-                <pre><code>const newCategoryMap =
-  new Map(pricingCatalogsByCategory);
-
-const latestPriceMap = new Map(
-  latestPricingLogs.pricingCatalogs
-    .map((pc) =&gt; [pc.catalog.id, pc])
-);
-
-for (const [category, catalogMap]
-  of newCategoryMap.entries()) {
-  const newCatalogMap = new Map(catalogMap);
-
-  for (const [catalogId, currentPricing]
-    of newCatalogMap.entries()) {
-    const latestPricing =
-      latestPriceMap.get(catalogId);
-
-    const newPricing = latestPricing
-      ? {
-          ...currentPricing,
-          costPrice: latestPricing.costPrice,
-          sellingPrice: latestPricing.sellingPrice,
-          date: latestPricing.date
-        }
-      : {
-          ...currentPricing,
-          costPrice: 0,
-          sellingPrice: 0
-        };
-
-    newCatalogMap.set(catalogId, newPricing);
-  }
-
-  newCategoryMap.set(category, newCatalogMap);
-}
-
-setPricingCatalogsByCategory(newCategoryMap);</code></pre>
-              </article>
-            </div>
-            <p class="code-caption">
-              최신 로그에 없는 상품은 카탈로그 row 자체를 지우지 않고 가격을 0으로 표시해 재입력 대상으로 남겼습니다.
-              저장 실패도 사용자 화면과 운영 메시지에 노출했습니다.
-            </p>
-          </section>
-
-          <section class="case-section" aria-labelledby="price-result">
-            <header class="case-section-header">
-              <p class="case-section-kicker">Outcome &amp; remaining limit</p>
-              <h3 id="price-result">“현재 보이는 데이터”와 “전체 저장 데이터”의 경계를 분리했습니다.</h3>
-            </header>
-            <div class="compact-outcome-grid">
-              <article>
-                <span>Fixed</span>
-                <strong>로그 밖 catalog ID 보존</strong>
-                <p>부분 화면이나 부분 로그가 전체 교체 payload를 축소하지 않게 했습니다.</p>
-              </article>
-              <article>
-                <span>Trade-off</span>
-                <strong>전체 Map 복사·전송은 유지</strong>
-                <p>서버 계약을 바꾸지 않은 대신 클라이언트가 전체 집합의 최신성을 책임졌습니다.</p>
-              </article>
-              <article>
-                <span>Next</span>
-                <strong>ID별 PATCH + 집합 회귀 테스트</strong>
-                <p>전체 교체 계약을 ID별 부분 수정으로 바꾸고, 저장 전후 집합 크기를 검증하는 회귀 테스트가 다음 단계입니다.</p>
-              </article>
-            </div>
-          </section>
-
-          <footer class="case-evidence">
-            <span>Code evidence</span>
-            <a href="https://github.com/tkd992006/onTheMarket/commit/d6cca7eaae9ecb2abdffa4810842869e3f1448dc" target="_blank" rel="noreferrer">d6cca7e · Map overlay</a>
-          </footer>
-        </div>
-      </div>
-    </dialog>
-
-    <dialog
-      class="case-modal"
-      id="otm-push-case"
-      aria-labelledby="push-case-title"
-      aria-describedby="push-case-description"
-    >
-      <div class="case-modal-shell">
-        <header class="case-modal-header">
-          <div>
-            <p class="case-modal-kicker">OnTheMarket · Solved issue 04</p>
-            <h2 id="push-case-title">세 런타임을 지나도 같은 사용자에게</h2>
-            <p id="push-case-description">
-              APNs·FCM·Capacitor 사이의 토큰 전달과 권한·registration event를 연결하고,
-              서버의 기존 topic/token audience 계약에 native 기기의 FCM token을 연결한 작업입니다.
-            </p>
-          </div>
-          <button class="case-modal-close" type="button" data-case-close aria-label="문제 해결 사례 닫기">×</button>
-        </header>
-
-        <div class="case-modal-content case-narrative is-compact">
-          <section class="case-section" aria-labelledby="push-context">
-            <header class="case-section-header">
-              <p class="case-section-kicker">Problem &amp; constraint</p>
-              <h3 id="push-context">OS가 만든 토큰을 로그인 사용자와 서버 audience까지 연결해야 했습니다.</h3>
-              <p>
-                로그인은 WebView 안에서 끝나지만 알림 주소는 OS가 만듭니다. iOS의 APNs 토큰을 Firebase 서버의 구독 주소로 바로 쓸 수도 없고,
-                로그인 전에 토큰만 받으면 어느 계정의 개인 알림인지 안전하게 정할 수도 없었습니다.
-              </p>
-            </header>
-
-            <div class="auth-push-journey" aria-label="앱 진입부터 로그인 사용자별 푸시 구독까지의 흐름">
-              <article>
-                <span>01 · 앱 진입</span>
-                <strong>저장된 세션으로 <code>self</code> 복원</strong>
-                <p>인증 정보가 없으면 로그인 화면으로 보냅니다. 이 단계에서는 사용자별 topic을 만들지 않습니다.</p>
-              </article>
-              <i aria-hidden="true">→</i>
-              <article>
-                <span>02 · 로그인 성공</span>
-                <strong>인증 토큰 저장 → <code>getSelf()</code></strong>
-                <p>로그인 API가 성공하면 토큰을 저장하고 <code>self.id</code>까지 채운 뒤 원래 경로 또는 식당 홈으로 이동합니다.</p>
-              </article>
-              <i aria-hidden="true">→</i>
-              <article>
-                <span>03 · 보호 경로 진입</span>
-                <strong>식당 조회 + 소유자 검증</strong>
-                <p><code>restaurant.userId === self.id</code>를 확인하고 매장 데이터를 읽은 경우에만 인증된 식당 layout을 렌더링합니다.</p>
-              </article>
-              <i aria-hidden="true">→</i>
-              <article class="is-emphasis">
-                <span>04 · 여기서 브리지 시작</span>
-                <strong>권한·native 등록 → FCM token</strong>
-                <p>로그인 버튼을 누르는 도중이 아니라, 사용자와 소유 매장이 확정된 뒤 알림 초기화 컴포넌트가 마운트됩니다.</p>
-              </article>
-              <i aria-hidden="true">→</i>
-              <article class="is-emphasis">
-                <span>05 · 서버 audience 연결</span>
-                <strong><code>all_users</code> + <code>user-{self.id}</code></strong>
-                <p>클라이언트가 임의의 userId를 보내지 않고, 서버 인증 컨텍스트의 <code>self.id</code>로 개인 topic을 결정합니다.</p>
-              </article>
-            </div>
-
-            <div class="case-rule-note">
-              <span>실행 경계</span>
-              <p>
-                미로그인 화면과 다른 사람의 식당 경로에서는 푸시 연결이 실행되지 않습니다. 보호된
-                <code>/restaurant/{restaurantId}/…</code> layout이 인증과 소유권 검증을 통과한 뒤에만 시작됩니다.
-              </p>
-            </div>
-
-            <div class="bridge-flow" aria-label="플랫폼별 푸시 토큰 브리지">
-              <div class="bridge-lane">
-                <span class="platform-badge is-ios">iOS</span>
-                <strong>APNs token을 Firebase에 연결</strong><i>→</i><strong>별도 FCM registration token 조회</strong>
-              </div>
-              <div class="bridge-lane">
-                <span class="platform-badge is-android">Android</span>
-                <strong>Firebase가 FCM token 발급</strong><i>→</i><strong>Capacitor가 WebView로 전달</strong>
-              </div>
-              <div class="bridge-contract">
-                <span>Shared contract</span>
-                <strong>Capacitor <code>registration</code> event의 FCM token</strong>
-                <i aria-hidden="true">↓</i>
-                <strong>인증된 <code>self.id</code>와 결합</strong>
-                <i aria-hidden="true">↓</i>
-                <strong><code>all_users</code> + <code>user-{self.id}</code></strong>
-              </div>
-            </div>
-          </section>
-
-          <section class="case-section" aria-labelledby="push-code-change">
-            <header class="case-section-header">
-              <p class="case-section-kicker">Code change</p>
-              <h3 id="push-code-change">native 토큰, 웹 이벤트, 기존 서버 구독을 한 흐름으로 이어 붙였습니다.</h3>
-            </header>
-            <div class="code-change-grid is-three">
-              <article class="code-card is-after">
-                <header><span>iOS · native</span><strong>APNs → FCM → Capacitor</strong></header>
-                <pre><code>Messaging.messaging().apnsToken =
-  deviceToken
-
-Messaging.messaging().token(
-  completion: { token, error in
-    if let token = token {
-      NotificationCenter.default.post(
-        name: .capacitorDidRegisterForRemoteNotifications,
-        object: token
-      )
-    }
-  }
-)</code></pre>
-              </article>
-              <article class="code-card is-after">
-                <header><span>Web · authenticated layout</span><strong>self 확정 뒤 registration token 구독</strong></header>
-                <pre><code>const self = st.use.self();
-
-if (!self.id) return;
-
-await PushNotifications
-  .requestPermissions();
-
-await PushNotifications.register();
-
-const registrationListener =
-  await PushNotifications.addListener(
-  "registration",
-  async (result) =&gt; {
-    const token = result.value;
-    if (token) {
-      await st.do
-        .subscribeDefaultNotification(token);
-    }
-  }
-);</code></pre>
-              </article>
-              <article class="code-card is-after">
-                <header><span>Server · existing audience</span><strong>기존 topic 계약에 native token 연결</strong></header>
-                <pre><code>async subscribeToMegaphone(token) {
-  return firebaseApi.subscribeToTopic(
-    token,
-    "all_users"
-  );
-}
-
-async subscribeToSelf(token, userId) {
-  return firebaseApi.subscribeToTopic(
-    token,
-    `user-${userId}`
-  );
-}
-
-send({ token });
-send({ topic });</code></pre>
-              </article>
-            </div>
-          </section>
-
-          <section class="case-section" aria-labelledby="push-result">
-            <header class="case-section-header">
-              <p class="case-section-kicker">Outcome &amp; remaining limit</p>
-              <h3 id="push-result">두 플랫폼의 차이를 하나의 registration 계약 아래로 내렸습니다.</h3>
-            </header>
-            <div class="compact-outcome-grid">
-              <article>
-                <span>Identity boundary</span>
-                <strong>로그인 사용자 × 기기 token</strong>
-                <p>식당 소유권까지 확인된 layout에서 서버 인증 ID와 FCM token을 연결했습니다.</p>
-              </article>
-              <article>
-                <span>Audience</span>
-                <strong>전체 공지 + 사용자별 알림</strong>
-                <p><code>all_users</code>와 <code>user-{id}</code>, token/topic 발송을 지원했습니다.</p>
-              </article>
-              <article>
-                <span>Remaining limit</span>
-                <strong>권한·로그아웃 lifecycle</strong>
-                <p><code>register()</code> 뒤 listener를 붙여 1초 후 정리한 순서와, 로그아웃·계정 전환 시 기존 개인 topic을 해제하는 흐름은 후속 과제로 남았습니다.</p>
-              </article>
-            </div>
-            <p class="case-afterthought">
-              현재 구조는 인증된 식당 layout의 <code>GetDeviceInfo</code>가 FCM token을 직접 조회하는 방식으로 단순화됐고,
-              인증·소유권 경계는 그대로 유지됩니다. 로그아웃·계정 전환 시 개인 topic을 해제하는 lifecycle이 남은 과제입니다.
-            </p>
-          </section>
-
-          <footer class="case-evidence">
-            <span>Code evidence</span>
-            <a href="https://github.com/tkd992006/onTheMarket/commit/a51abe522c9ca547c321802dde3e4161a2bd8410" target="_blank" rel="noreferrer">a51abe5 · APNs/FCM setup</a>
-            <a href="https://github.com/tkd992006/onTheMarket/commit/58b38035bfaa6e0057f95e5a32a85c998b78eb3d" target="_blank" rel="noreferrer">58b3803 · Android setup</a>
-            <a href="https://github.com/tkd992006/onTheMarket/commit/67a4491d7590d441497c9e42eb2ea0700b6a4626" target="_blank" rel="noreferrer">67a4491 · permission/registration</a>
-            <a href="https://github.com/tkd992006/onTheMarket/commit/31d55d562d441f73cb17f88bd14eb79232e0b816" target="_blank" rel="noreferrer">31d55d5 · direct FCM path / topic payload</a>
-          </footer>
-        </div>
-      </div>
-    </dialog>
-
     <dialog
       class="case-modal"
       id="otm-receipt-case"
@@ -2172,7 +1786,7 @@ send({ topic });</code></pre>
       <div class="case-modal-shell">
         <header class="case-modal-header">
           <div>
-            <p class="case-modal-kicker">OnTheMarket · Solved issue 05</p>
+            <p class="case-modal-kicker">OnTheMarket · Solved issue 03</p>
             <h2 id="receipt-case-title">영수증 한 장을 가격 진단 데이터로</h2>
             <p id="receipt-case-description">
               비정형 이미지에서 품목·수량·단가를 구조화하고 내부 카탈로그와 과거 가격 기록에 연결해,
@@ -2204,78 +1818,6 @@ send({ topic });</code></pre>
               <div><span>05</span><strong>품목별 차액</strong></div>
             </div>
           </section>
-
-          <section class="case-section" aria-labelledby="receipt-code-change">
-            <header class="case-section-header">
-              <p class="case-section-kicker">Code change</p>
-              <h3 id="receipt-code-change">모델 호출 전후에 입력·출력·도메인 검증 경계를 뒀습니다.</h3>
-            </header>
-            <div class="code-change-grid">
-              <article class="code-card is-after">
-                <header><span>Input + AI contract</span><strong>800px·JPEG 80% + JSON schema</strong></header>
-                <pre><code>const processedBuffer = await sharp(imageBuffer)
-  .resize({
-    width: 800,
-    withoutEnlargement: true
-  })
-  .jpeg({ quality: 80 })
-  .toBuffer();
-
-responseMimeType: "application/json",
-responseSchema: {
-  type: "OBJECT",
-  properties: {
-    date: { type: "STRING", nullable: true },
-    matches: {
-      type: "ARRAY",
-      items: {
-        type: "OBJECT",
-        properties: {
-          databaseId: { type: "STRING", nullable: true },
-          receiptName: { type: "STRING" },
-          quantity: { type: "NUMBER" },
-          unitPriceOnReceipt: { type: "NUMBER" }
-        }
-      }
-    }
-  }
-}</code></pre>
-              </article>
-              <article class="code-card is-after">
-                <header><span>Domain validation</span><strong>날짜 fallback + 실제 catalog 대조</strong></header>
-                <pre><code>const targetDate = date ? dayjs(date) : dayjs();
-
-const dailyLog = await findByDateAndType(
-  targetDate,
-  "daily_lowest_price"
-);
-const latestLog = await findByType(
-  "daily_lowest_price",
-  { sort: "latest" }
-);
-const pricingLog = dailyLog ?? latestLog;
-
-const catalog = catalogs.find(
-  (item) =&gt; item.id === match.databaseId
-);
-const serviceUnitPrice =
-  (catalog &amp;&amp; priceMap.get(catalog.id)) || 0;
-
-return {
-  isMatched: !!catalog &amp;&amp; serviceUnitPrice &gt; 0,
-  serviceUnitPrice,
-  diff:
-    (match.unitPriceOnReceipt || 0) -
-    (serviceUnitPrice || 0)
-};</code></pre>
-              </article>
-            </div>
-            <p class="code-caption">
-              이미지 최적화가 실패하면 원본을 사용했고, 날짜별 일일 최저가가 없으면 최신 기록으로 fallback했습니다.
-              매칭 여부·서비스 단가·차액을 저장해 ID 기반 결과 화면에서 다시 조회했습니다.
-            </p>
-          </section>
-
           <section class="case-section" aria-labelledby="receipt-result">
             <header class="case-section-header">
               <p class="case-section-kicker">Outcome &amp; remaining limit</p>
@@ -2447,8 +1989,7 @@ phase2Prompt(result, image, test.lang)</code></pre>
               <p class="case-section-kicker">Code evidence</p>
               <h3 id="syrs-code-evidence-title">실제 구현 코드 발췌</h3>
               <p>
-                클라이언트 납품 프로젝트라 저장소는 비공개입니다. 핵심 구현을 코드 그대로 발췌해 두었고,
-                전체 코드는 면접에서 시연할 수 있습니다.
+                클라이언트 납품 프로젝트라 저장소는 비공개입니다. 핵심 구현을 코드 그대로 발췌해 두었습니다.
               </p>
             </header>
 

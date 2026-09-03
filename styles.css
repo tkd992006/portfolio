@@ -1422,6 +1422,7 @@ p {
 
 .sheet-body {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem;
   overflow: auto;
   padding: 1.25rem 1.75rem 1.75rem;
