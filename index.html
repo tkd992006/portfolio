@@ -802,17 +802,17 @@
             >
               <span class="case-study-trigger-meta">
                 <span class="case-study-trigger-index">Solved issue 01</span>
-                <span>LLM Reliability · Runtime Validation · Retry UX</span>
+                <span>OpenAI Assistants · Runtime Validation · Loading UX</span>
               </span>
               <span class="case-study-trigger-copy">
-                <strong>AI 피부 진단 응답 신뢰성과 체감 대기시간 설계</strong>
+                <strong>LLM 응답 포맷 안정화</strong>
                 <span>
-                  JSON 형식과 필수 분석 필드를 런타임 타입 가드로 검증하고,
-                  서버 오류 경로와 최대 5회 재시도, 개인화된 분석 대기 화면으로 실패와 대기를 함께 다뤘습니다.
+                  비용 때문에 쓴 gpt-4o-mini의 불안정한 JSON 응답을 런타임 타입 가드와 재시도로 잡고,
+                  그만큼 길어진 대기시간은 스캔 애니메이션으로 흡수했습니다.
                 </span>
               </span>
               <span class="case-study-trigger-action">
-                신뢰성 설계 과정 보기 <span aria-hidden="true">↗</span>
+                해결 과정 보기 <span aria-hidden="true">↗</span>
               </span>
             </button>
           </div>
@@ -2266,10 +2266,10 @@ return {
         <header class="case-modal-header">
           <div>
             <p class="case-modal-kicker">SYRS AI Lab · Solved issue 01</p>
-            <h2 id="syrs-llm-reliability-case-title">모델 응답을 제품이 믿을 수 있는 계약으로</h2>
+            <h2 id="syrs-llm-reliability-case-title">LLM 응답 포맷 안정화</h2>
             <p id="syrs-llm-reliability-case-description">
-              최초·개선 피부 진단 API의 출력 계약을 런타임에서 검증하고,
-              제한된 서버 재시도와 분석·오류 복구 UI를 하나의 사용자 흐름으로 설계한 작업입니다.
+              비용 때문에 선택한 gpt-4o-mini의 불안정한 응답 포맷을 런타임 검증과 재시도로 붙잡고,
+              그 대신 길어진 대기시간을 로딩 애니메이션으로 흡수한 작업입니다.
             </p>
           </div>
           <button class="case-modal-close" type="button" data-case-close aria-label="문제 해결 사례 닫기">×</button>
@@ -2278,40 +2278,60 @@ return {
         <div class="case-modal-content case-narrative is-compact">
           <section class="case-section" aria-labelledby="syrs-reliability-context">
             <header class="case-section-header">
-              <p class="case-section-kicker">Problem &amp; constraint</p>
-              <h3 id="syrs-reliability-context">호출은 성공했지만 제품이 사용할 수 없는 응답이 돌아왔습니다.</h3>
+              <p class="case-section-kicker">Problem &amp; constraints</p>
+              <h3 id="syrs-reliability-context">단가를 맞추려면 gpt-4o-mini를 써야 했는데, 이 모델은 포맷을 자주 어겼습니다.</h3>
               <p>
-                OpenAI stream이 정상 종료돼도 설명 문장이 JSON 앞뒤에 붙거나, 필수 분석 필드가 빠지거나,
-                선택한 언어와 다른 언어로 응답하는 경우가 반복됐습니다. HTTP 성공 여부만으로는 진단 성공을 판단할 수 없었습니다.
+                피부 진단 보고서는 현미경 이미지와 긴 프롬프트를 함께 보내는 호출이라, 한 건당 비용을 감안하면
+                gpt-4o-mini가 현실적인 선택이었습니다. 문제는 당시 이 모델의 응답 포맷팅이 불안정했다는 점입니다.
+                "JSON으로 답하라"고 지시해도 결과를 그대로 파싱할 수 없는 경우가 이어졌고,
+                HTTP 성공만으로는 진단이 성공했는지 판단할 수 없었습니다. 매장 iPad에서 고객과 상담사가 함께 보는
+                화면이라 실패를 그대로 노출할 수도 없었습니다.
               </p>
             </header>
-            <div class="constraint-grid" aria-label="LLM 피부 진단 응답의 세 가지 제약">
-              <article>
-                <span>Format</span>
-                <strong>JSON 밖의 텍스트</strong>
-                <p>응답 전체를 바로 파싱할 수 없어 실제 JSON 구간을 먼저 찾아야 했습니다.</p>
-              </article>
-              <article>
-                <span>Two contracts</span>
-                <strong>최초 6개 · 개선 9개 필수 필드</strong>
-                <p>개선 진단은 최초 결과에 노화·민감도·유수분 개선 설명 3개가 더 필요했습니다.</p>
-              </article>
-              <article>
-                <span>Store UX</span>
-                <strong>4개 언어 · 매장 iPad</strong>
-                <p>고객과 상담사가 함께 쓰므로 긴 대기와 최종 실패도 이해할 수 있는 화면이 필요했습니다.</p>
-              </article>
-            </div>
+          </section>
+
+          <section class="case-section" aria-labelledby="syrs-reliability-observed">
+            <header class="case-section-header">
+              <p class="case-section-kicker">Observed before</p>
+              <h3 id="syrs-reliability-observed">스트림은 정상 종료됐는데 제품이 쓸 수 없는 응답이 반복됐습니다.</h3>
+              <p>
+                실제로 관찰된 실패는 세 가지였습니다. JSON 앞뒤에 "다음은 분석 결과입니다" 같은 설명 문장이 붙어
+                <code>JSON.parse</code>가 바로 실패하는 경우, 파싱은 되지만 <code>skinAge</code>나
+                <code>oilWaterBalanceDesc</code> 같은 필수 분석 필드가 빠진 경우, 그리고 고객이 고른 언어와 다른 언어로
+                응답하는 경우였습니다. 세 경우 모두 서버에서는 정상 응답으로 보였기 때문에, 이 상태로는 결과를 저장하거나
+                화면에 그릴 수 없었습니다.
+              </p>
+            </header>
           </section>
 
           <section class="case-section" aria-labelledby="syrs-reliability-change">
             <header class="case-section-header">
-              <p class="case-section-kicker">Reliability contract</p>
-              <h3 id="syrs-reliability-change">프롬프트의 기대사항을 런타임 성공 조건으로 옮겼습니다.</h3>
+              <p class="case-section-kicker">Solution</p>
+              <h3 id="syrs-reliability-change">프롬프트의 기대를 런타임 성공 조건으로 옮기고, 실패하면 다시 호출했습니다.</h3>
               <p>
-                JSON 구간을 추출해 파싱한 뒤 단계별 타입 가드로 필수 필드와 값 타입을 검사했습니다.
-                실패를 정상 진단처럼 저장하지 않고 서버 오류 경로로 전환했으며, 개선 진단에는 선택 언어를 다시 명시했습니다.
+                스트림으로 모은 출력에서 첫 <code>{</code>와 마지막 <code>}</code> 사이만 잘라 파싱하고,
+                최초 진단은 <code>isSkinData</code>, 개선 진단은 <code>isSkinImprovementData</code> 타입 가드로
+                필수 필드와 값 타입을 검사했습니다. 가드를 통과하지 못하면 정상 결과로 저장하지 않고 오류로 던져
+                최대 5회까지 다시 시도했고, 개선 진단 프롬프트에는 선택 언어를 다시 명시해 언어 불일치를 줄였습니다.
               </p>
+            </header>
+            <div class="pipeline-strip" aria-label="LLM 응답 검증과 복구 흐름">
+              <div><span>01</span><strong>LLM stream</strong></div>
+              <i aria-hidden="true">→</i>
+              <div><span>02</span><strong>JSON 추출·파싱</strong></div>
+              <i aria-hidden="true">→</i>
+              <div><span>03</span><strong>타입 가드 검증</strong></div>
+              <i aria-hidden="true">→</i>
+              <div><span>04</span><strong>최대 5회 시도</strong></div>
+              <i aria-hidden="true">→</i>
+              <div><span>05</span><strong>결과 또는 복구</strong></div>
+            </div>
+          </section>
+
+          <section class="case-section" aria-labelledby="syrs-reliability-code-change">
+            <header class="case-section-header">
+              <p class="case-section-kicker">Code change</p>
+              <h3 id="syrs-reliability-code-change">모델 지시가 아니라 코드가 응답 포맷을 보장하게 했습니다.</h3>
             </header>
             <div class="code-change-grid">
               <article class="code-card is-before">
@@ -2323,7 +2343,7 @@ return {
 // 형식·필드·언어를 보장할 수 없음</code></pre>
               </article>
               <article class="code-card is-after">
-                <header><span>Runtime contract</span><strong>두 단계의 필수 분석을 별도 검증</strong></header>
+                <header><span>Runtime contract</span><strong>추출 · 검증 · 실패 시 재시도</strong></header>
                 <pre><code>const json = JSON.parse(
   output.slice(firstBrace, lastBrace)
 );
@@ -2331,64 +2351,36 @@ return {
 phase1: isSkinData(json)
 phase2: isSkinImprovementData(json)
 
+// 통과 못 하면 throw → 재시도
 phase2Prompt(result, image, test.lang)</code></pre>
               </article>
-            </div>
-            <div class="pipeline-strip" aria-label="LLM 응답 검증과 복구 흐름">
-              <div><span>01</span><strong>LLM stream</strong></div>
-              <i aria-hidden="true">→</i>
-              <div><span>02</span><strong>JSON 추출·파싱</strong></div>
-              <i aria-hidden="true">→</i>
-              <div><span>03</span><strong>단계별 검증</strong></div>
-              <i aria-hidden="true">→</i>
-              <div><span>04</span><strong>최대 5회 시도</strong></div>
-              <i aria-hidden="true">→</i>
-              <div><span>05</span><strong>결과 또는 복구</strong></div>
-            </div>
-            <div class="case-rule-note">
-              <span>Trade-off</span>
-              <p>
-                최초·개선 진단 API의 최대 시도 횟수를 1회에서 5회로 늘리면 성공 기회는 커지지만,
-                최악의 경우 모델 호출 비용과 대기시간도 함께 커집니다. 그래서 재시도 정책을 화면의 대기·실패 상태와 함께 설계했습니다.
-              </p>
             </div>
           </section>
 
           <section class="case-section" aria-labelledby="syrs-reliability-result">
             <header class="case-section-header">
-              <p class="case-section-kicker">Outcome &amp; learning</p>
-              <h3 id="syrs-reliability-result">검증과 재시도가 만드는 시간을 사용자 경험 안에 넣었습니다.</h3>
+              <p class="case-section-kicker">Outcome &amp; trade-off</p>
+              <h3 id="syrs-reliability-result">포맷은 런타임에서 보장됐고, 길어진 대기는 애니메이션으로 흡수했습니다.</h3>
               <p>
-                최초 진단용 <code>Loading</code>과 개선 진단용 <code>SolutionLoading</code>을 나누고,
-                React Spring 스캔 애니메이션과 다국어 분석 안내, 닫기·처음으로 돌아가기 오류 복구 동선을 연결했습니다.
-                개선 진단은 최초 진단의 OpenAI 스레드를 이어받아 이전 결과를 비교 맥락으로 사용합니다.
+                검증을 통과한 응답만 저장되므로 화면이 깨진 결과를 받는 일은 사라졌습니다. 대신 재시도 때문에
+                최악의 경우 대기시간과 호출 비용이 시도 횟수만큼 늘어나는 트레이드오프가 생겼습니다.
+                이 시간을 더 줄이는 대신 제품 경험 안에 넣기로 했습니다. 최초 진단용 <code>Loading</code>과
+                개선 진단용 <code>SolutionLoading</code>에 react-spring 스캔 애니메이션을 두어 기다리는 동안 분석이
+                진행 중이라는 느낌을 주고, 영·한·일·태 4개 언어 안내와 닫기·처음으로 돌아가기 오류 복구 동선을
+                연결했습니다. 개선 진단은 최초 진단의 OpenAI 스레드를 이어받아 이전 결과를 비교 맥락으로 사용합니다.
               </p>
             </header>
-            <div class="compact-outcome-grid">
-              <article>
-                <span>Response contract</span>
-                <strong>2 API · 2 type guards</strong>
-                <p>최초·개선 진단의 서로 다른 필수 분석 범위를 런타임에서 검증했습니다.</p>
-              </article>
-              <article>
-                <span>Retry budget</span>
-                <strong>1 → 최대 5회</strong>
-                <p>항상 5번 호출하는 것이 아니라 실패 시 사용할 수 있는 최대 시도 상한입니다.</p>
-              </article>
-              <article>
-                <span>Waiting &amp; recovery</span>
-                <strong>4 locales · 2 loading flows</strong>
-                <p>영·한·일·태 안내와 최초·개선 단계별 애니메이션, 최종 오류 복구 화면을 제공했습니다.</p>
-              </article>
+            <div class="case-rule-note">
+              <span>Trade-off</span>
+              <p>
+                5회는 항상 호출하는 횟수가 아니라 실패했을 때 쓸 수 있는 상한입니다. 그래도 최악의 경우
+                대기와 비용은 커지므로, 그 시간을 사용자가 견딜 수 있게 만드는 로딩 화면까지가 이 작업의 범위였습니다.
+              </p>
             </div>
             <blockquote class="case-learning compact-learning">
-              LLM 기능은 모델 호출 성공만으로 끝나지 않습니다. 응답 계약, 재시도의 비용·지연,
-              사용자가 체감하는 대기와 최종 실패의 복구까지 하나의 시스템으로 설계해야 합니다.
+              LLM 응답은 호출이 성공한 것이 아니라 검증을 통과한 것이어야 제품이 쓸 수 있습니다.
+              검증이 만드는 시간은 숨길 수 없으니, 그 시간을 어떻게 보여줄지까지가 기능의 일부였습니다.
             </blockquote>
-            <p class="case-afterthought">
-              다시 진행한다면 시도 횟수별 성공률·토큰 비용·p95 대기시간을 함께 기록해,
-              재시도 정책이 사용자 경험과 운영 비용에 미치는 영향을 데이터로 조정하겠습니다.
-            </p>
           </section>
 
           <section class="case-section" aria-labelledby="syrs-code-evidence-title">
