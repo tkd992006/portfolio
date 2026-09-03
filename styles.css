@@ -1542,6 +1542,13 @@ p {
     --chrono-label: 84px;
   }
 
+  /* 모바일 폭에서는 연표가 잘려 보이므로 아예 감춘다 */
+  @media (max-width: 640px) {
+    .chrono {
+      display: none;
+    }
+  }
+
   .workspace {
     display: block;
   }

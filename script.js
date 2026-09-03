@@ -132,6 +132,7 @@ $$(".ama-followup-toggle").forEach((toggle) => {
 // 연표 — thin bars (period) and dots (year-only); names appear on hover/focus.
 // start/end: "YYYY-MM" (end inclusive) or "now". year: 연 단위로만 아는 항목(점).
 // approx: 연 단위 범위(빗금). featured: Selected Work.
+// boundary: 그 해가 시작되는 경계선 위에 찍는 점(예: 2025 → 2024|2025 사이).
 // ---------------------------------------------------------------------------
 const CHRONO = {
   startYear: 2018,
@@ -169,7 +170,7 @@ const CHRONO_TRACKS = [
     items: [
       { label: "OnTheMarket", start: "2025-06", end: "2026-02", href: "#project-onthemarket", featured: true },
       { label: "Gagageul", year: 2025, href: "#project-gagageul", featured: true },
-      { label: "ChapterTwo", start: "2024-01", end: "2025-12", href: "#portfolio-chaptertwo", approx: true },
+      { label: "ChapterTwo", boundary: 2025, href: "#portfolio-chaptertwo" },
       { label: "SYRS AI Lab", year: 2024, href: "#project-syrs", featured: true },
       { label: "JoBonger", year: 2024, href: "#portfolio-jobonger" },
       { label: "Play AI SSO", year: 2024, href: "#portfolio-playai" },
@@ -196,6 +197,7 @@ const totalMonths = () => monthIndex(CHRONO.end) + 1;
 
 const periodText = (item) => {
   if (item.year) return String(item.year);
+  if (item.boundary) return `${item.boundary - 1} – ${item.boundary}`;
   const [startYear, startMonth] = item.start.split("-");
   if (item.approx) {
     const endYear = item.end.split("-")[0];
@@ -216,6 +218,11 @@ const layoutTrack = (items) => {
   byYear.forEach((group) => group.sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured))));
 
   const placed = items.map((item) => {
+    if (item.boundary) {
+      // 경계선 양옆 두 달에 걸쳐 놓고 가운데 정렬하면 점이 연 경계선 위에 온다
+      const start = monthIndex(`${item.boundary - 1}-12`);
+      return { item, start, end: start + 2, dot: true };
+    }
     if (item.year) {
       const group = byYear.get(item.year);
       const month = Math.round(((group.indexOf(item) + 1) * 12) / (group.length + 1)) - 1;
