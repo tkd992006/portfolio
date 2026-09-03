@@ -3010,6 +3010,15 @@ p {
   gap: 0.8rem;
 }
 
+.broken-state-grid.is-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.broken-state-grid.is-three .broken-phone-wrap {
+  grid-template-columns: 1fr;
+  gap: 0.7rem;
+}
+
 .broken-state-card {
   border: 1px solid #e1b2a6;
   border-radius: 10px;
@@ -3052,6 +3061,19 @@ p {
   width: min(164px, 100%);
 }
 
+.broken-phone-wrap.is-fixed {
+  grid-template-columns: minmax(150px, 0.42fr) minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.phone-screen.is-restored {
+  background: #f7f9f8;
+}
+
+.phone-screen.is-broken-covered {
+  background: #fff;
+}
+
 .phone-screen.is-broken-double,
 .phone-screen.is-broken-missing {
   background: #f7f9f8;
@@ -3089,6 +3111,59 @@ p {
   bottom: 0.16rem;
 }
 
+.mock-bottom-nav.is-restored {
+  bottom: 1.3rem;
+  border-color: #2d6e53;
+  box-shadow: 0 0 0 2px rgba(45, 110, 83, 0.14), 0 5px 12px rgba(25, 40, 33, 0.14);
+}
+
+.mock-appbar.is-pg {
+  display: flex;
+  align-items: center;
+  gap: 0.28rem;
+  color: #3b4a44;
+  font-family: "SF Mono", "Menlo", monospace;
+  font-size: 0.46rem;
+  font-weight: 700;
+}
+
+.mock-appbar.is-pg i {
+  font-size: 0.4rem;
+  font-style: normal;
+}
+
+.mock-pay-button {
+  position: absolute;
+  right: 0.38rem;
+  bottom: 0.62rem;
+  left: 0.38rem;
+  z-index: 3;
+  border-radius: 6px;
+  padding: 0.5rem 0.2rem;
+  background: var(--teal);
+  box-shadow: 0 0 0 2px rgba(217, 91, 62, 0.16);
+  color: #fff;
+  font-size: 0.42rem;
+  font-weight: 950;
+  text-align: center;
+}
+
+.mock-system-bar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: 1.55rem;
+  place-items: center;
+  background: rgba(24, 31, 28, 0.84);
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 900;
+}
+
 .mock-inset-band {
   position: absolute;
   right: 0;
@@ -3112,6 +3187,13 @@ p {
   background: repeating-linear-gradient(135deg, #f6b8a8, #f6b8a8 6px, #ffd8ce 6px, #ffd8ce 12px);
 }
 
+.mock-inset-band.is-restored {
+  bottom: 0;
+  height: 1.15rem;
+  color: #1f5d43;
+  background: repeating-linear-gradient(135deg, #cfe9dc, #cfe9dc 6px, #e4f3ea 6px, #e4f3ea 12px);
+}
+
 .mock-system-cover {
   position: absolute;
   right: 0;
@@ -3131,6 +3213,11 @@ p {
 .is-broken-missing .android-nav {
   z-index: 6;
   color: #fff;
+}
+
+.is-restored .ios-home,
+.is-restored .android-nav {
+  z-index: 6;
 }
 
 .broken-callout {
@@ -3165,13 +3252,24 @@ p {
   line-height: 1.5;
 }
 
-.case-rule-note.is-ios-note {
-  border-left-color: #303a49;
-  background: #eef1f4;
+.broken-callout p code {
+  font-size: 0.92em;
 }
 
-.case-rule-note.is-ios-note > span {
-  color: #303a49;
+.broken-callout.is-fixed {
+  border-left-color: #2d6e53;
+}
+
+.broken-callout.is-fixed span {
+  color: #1f5d43;
+}
+
+.broken-callout.is-fixed p {
+  color: #46524c;
+}
+
+.case-section-header.is-followup {
+  margin: 1.1rem 0 0;
 }
 
 .case-section-header.is-prose > p {
@@ -3208,12 +3306,12 @@ p {
   font-weight: 700;
 }
 
-.case-rule-note.is-tradeoff-list {
+.case-rule-note.is-tradeoff {
   border-left-color: #d5a12c;
   background: #fff9eb;
 }
 
-.case-rule-note.is-tradeoff-list > span {
+.case-rule-note.is-tradeoff > span {
   color: #8a6105;
 }
 
@@ -3244,6 +3342,11 @@ p {
   gap: 1rem;
   align-items: start;
   margin-bottom: 1rem;
+}
+
+.platform-story-header.is-solo {
+  grid-template-columns: 1fr;
+  margin-bottom: 0.85rem;
 }
 
 .platform-story-header > div {
@@ -3281,6 +3384,12 @@ p {
 
 .platform-badge.is-ios {
   background: #303a49;
+}
+
+.platform-badge.is-step {
+  background: #a34029;
+  text-transform: none;
+  letter-spacing: 0.02em;
 }
 
 .phone-shell {
@@ -3796,7 +3905,8 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .broken-state-grid {
+  .broken-state-grid,
+  .broken-state-grid.is-three {
     grid-template-columns: 1fr;
   }
 
@@ -3970,7 +4080,8 @@ p {
     width: 158px;
   }
 
-  .broken-phone-wrap {
+  .broken-phone-wrap,
+  .broken-phone-wrap.is-fixed {
     grid-template-columns: 1fr;
   }
 
