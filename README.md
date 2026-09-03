@@ -28,11 +28,3 @@ GitHub Pages에 바로 배포할 수 있는 정적 포트폴리오입니다.
 - `script.js`: 연표 렌더링(`CHRONO_TRACKS`), 해시 라우팅, 시트/모달/라이트박스, 케이스 스터디 스텝퍼, AMA 탭
 - `assets/images/`: WebP로 최적화한 프로젝트 이미지
 
-## GitHub Pages
-
-1. 이 폴더를 GitHub 저장소에 push합니다.
-2. Repository `Settings` → `Pages`로 이동합니다.
-3. `Build and deployment`에서 `Deploy from a branch`를 선택합니다.
-4. Branch를 `main` 또는 `master`, folder를 `/root`로 설정합니다.
-
-빌드 과정이 없는 정적 사이트라 별도 패키지 설치 없이 배포됩니다.
