@@ -213,7 +213,7 @@ p {
   align-items: start;
   min-width: 0;
   border-bottom: 1px solid rgba(23, 27, 24, 0.22);
-  padding: 0.85rem 1.75rem 0.8rem;
+  padding: 1.1rem 1.75rem 0.85rem;
 }
 
 .chrono-main {
@@ -249,10 +249,12 @@ p {
   position: relative;
   display: grid;
   grid-template-columns: var(--chrono-label, 104px) var(--chrono-months, repeat(75, minmax(0, 1fr)));
+  /* 첫 행(연도 라벨)은 글자 높이보다 넉넉히 잡아 overflow 클리핑을 막는다 */
+  grid-template-rows: 18px;
   grid-auto-rows: var(--row);
   row-gap: 6px;
   min-width: 620px;
-  padding-bottom: 0.2rem;
+  padding: 0.2rem 0;
 }
 
 .chrono-fallback {
