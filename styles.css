@@ -3174,6 +3174,59 @@ p {
   color: #303a49;
 }
 
+.case-section-header.is-prose > p {
+  max-width: 790px;
+  margin: 0 0 0.85rem;
+  color: #46524c;
+  font-size: 0.96rem;
+  line-height: 1.72;
+}
+
+.case-section-header.is-prose > p:last-child {
+  margin-bottom: 0;
+}
+
+.case-section-header.is-prose code {
+  font-size: 0.86em;
+}
+
+.case-inline-trace.is-ownership strong {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.48rem 0.8rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.case-inline-trace.is-ownership strong.is-native {
+  background: #eef1f4;
+}
+
+.case-inline-trace.is-ownership small {
+  color: #5b6b63;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.case-rule-note.is-tradeoff-list {
+  border-left-color: #d5a12c;
+  background: #fff9eb;
+}
+
+.case-rule-note.is-tradeoff-list > span {
+  color: #8a6105;
+}
+
+.case-rule-note ol {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding-left: 1.2rem;
+  color: #3f4d46;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
 .platform-story {
   border: 1px solid #ccd8d2;
   border-radius: 10px;
