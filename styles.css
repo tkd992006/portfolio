@@ -204,7 +204,8 @@ p {
 .chrono {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 820px) auto;
+  justify-content: center;
   gap: 1rem 2.5rem;
   align-items: start;
   min-width: 0;
@@ -233,36 +234,6 @@ p {
 .chrono-hint {
   margin: 0;
   color: var(--muted);
-}
-
-.chrono-toggle {
-  border: 1px solid rgba(23, 27, 24, 0.28);
-  border-radius: 0;
-  padding: 0.35rem 0.6rem;
-  background: transparent;
-  color: var(--ink);
-  cursor: pointer;
-  transition:
-    background 140ms ease,
-    color 140ms ease,
-    border-color 140ms ease;
-}
-
-.chrono-toggle:hover,
-.chrono-toggle:focus-visible {
-  border-color: var(--ink);
-  background: var(--ink);
-  color: var(--paper);
-  outline: none;
-}
-
-.chrono.is-collapsed .chrono-scroller,
-.chrono.is-collapsed .chrono-legend {
-  display: none;
-}
-
-.chrono.is-collapsed {
-  gap: 0;
 }
 
 .chrono-scroller {
@@ -512,6 +483,10 @@ p {
 .workspace {
   display: grid;
   grid-template-columns: 236px minmax(0, 1fr);
+  justify-self: center;
+  width: 100%;
+  /* rail 236px + stage padding 2 × 2.75rem + panel 1120px */
+  max-width: calc(236px + 5.5rem + 1120px);
   min-width: 0;
   min-height: 0;
 }
@@ -1223,9 +1198,9 @@ p {
   white-space: nowrap;
 }
 
-.work-count {
+.work-tag {
   padding: 0.22rem 0.55rem;
-  background: var(--ink);
+  background: var(--blue);
   color: var(--paper);
 }
 

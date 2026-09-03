@@ -363,18 +363,6 @@ if (chronoGrid) {
   if (scroller && scroller.scrollWidth > scroller.clientWidth) scroller.scrollLeft = scroller.scrollWidth;
 }
 
-const chronoToggle = $(".chrono-toggle");
-const setChronoCollapsed = (collapsed) => {
-  chronoToggle?.closest(".chrono")?.classList.toggle("is-collapsed", collapsed);
-  chronoToggle?.setAttribute("aria-expanded", String(!collapsed));
-  if (chronoToggle) chronoToggle.textContent = collapsed ? "Expand" : "Collapse";
-};
-chronoToggle?.addEventListener("click", () => {
-  setChronoCollapsed(!chronoToggle.closest(".chrono")?.classList.contains("is-collapsed"));
-});
-// 세로가 짧은 데스크톱 화면에서는 패널이 스크롤 없이 들어가도록 연표를 접은 채 시작한다
-if (window.matchMedia("(min-width: 901px) and (max-height: 820px)").matches) setChronoCollapsed(true);
-
 // ---------------------------------------------------------------------------
 // Case-study stepper: one section at a time, prev/next, step tabs, arrow keys
 // ---------------------------------------------------------------------------
