@@ -462,7 +462,7 @@ const panels = $$(".panel");
 const railItems = $$(".rail-item");
 const stage = $("#stage");
 const DEFAULT_PANEL_ID = "who-am-i";
-const BASE_TITLE = "이상화 — Frontend / Product Engineer";
+const BASE_TITLE = "이상화 · Frontend / Product Engineer";
 const HASH_ALIASES = { projects: "selected-work", top: DEFAULT_PANEL_ID, stage: DEFAULT_PANEL_ID };
 
 let targetPulseTimer = 0;
